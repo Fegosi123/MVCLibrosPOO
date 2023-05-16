@@ -1,14 +1,18 @@
 
 
 <!----------------------------------------------------------------------->
-
+<?php include ("header.php") ?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel='stylesheet' type='text/css' media='screen' href='/CSS/miEstilo.css'>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+      <link rel='stylesheet' type='text/css' media='screen' href='CSS/miEstilo.css'>
       <title>LIBRERIA SILVIA</title>
       <!--<style>
          form[id=formuEditar], select{
@@ -52,39 +56,50 @@
             }
          ?>
       <h1>Datos del libro seleccionado</h1>
-      <div class="clo-md-12 text-right">
-      
-      <form id="formuEditar" action="index.php?controller=libros&action=guardar" enctype="multipart/form-data" method="post">
-        ID: <input type="hidden" name="id" value="<?=$datosLibro['id']?>"><br>
-        ISBN: <input type="text" name="isbn" value="<?=$datosLibro['isbn']?>"><br>
-        TITULO: <input type="text" name="titulo" value="<?=$datosLibro['titulo']?>"><br>
-        DESCRIPCION: <input type="text" name="descripcion" value="<?=$datosLibro['descripcion']?>"><br>
-        EDITORIAL: 
-        <select name="editorial" id="editorial">
-                            <?php foreach ($datosEditoriales as $clave => $editorial) {
-                                    if($datosLibro['editorial']==$editorial['id']){
-                                        ?><option value="<?= $editorial ['id']; ?>" selected><?=$editorial['nombre'];?></option>;
-                                    <?php
-                                    }else{
-                                       ?> <option value="<?= $editorial ['id']; ?>"><?=$editorial['nombre'];?></option>;
-                                    
-                                    <?php }
-                                    }
-                            ?>
-                        </select><br></br>
-        Nº DE PÁGINAS: <input type="text" name="n_pags" value="<?=$datosLibro['n_pags']?>"><br>
-        PRECIO: <input type="text" name="precio" value="<?=$datosLibro['precio'].'€'?>"><br><br>
-        IMAGEN PORTADA:
-                        <p>
-                           <img src="./imagenes/<?php echo $datosLibro['foto']; ?>" width="110" height="150" alt="Portada libro"/>
-                        </p>
-                        <p>
-                           <label for="file">foto</label>
-                           <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
-                           <input type="file" name="foto"><br><br>
-                        </p>
-        <input type="submit" value="Enviar" >
-      </form>
-       
+      <div>
+         <form action="index.php?controller=libros&action=guardar" enctype="multipart/form-data" method="post">
+            <fieldset>
+               <legend></legend>
+                        ID: <input type="hidden" name="id" value="<?=$datosLibro['id']?>"><br><br>
+                        ISBN: <input type="text" name="isbn" value="<?=$datosLibro['isbn']?>"><br><br>
+                        TITULO: <input type="text" name="titulo" value="<?=$datosLibro['titulo']?>"><br><br>
+                        DESCRIPCION: <input type="text" name="descripcion" value="<?=$datosLibro['descripcion']?>"><br><br>
+                        EDITORIAL: 
+                        <select name="editorial" id="editorial">
+                                             <?php foreach ($datosEditoriales as $clave => $editorial) {
+                                                      if($datosLibro['editorial']==$editorial['id']){
+                                                         ?><option value="<?= $editorial ['id']; ?>" selected><?=$editorial['nombre'];?></option>;
+                                                      <?php
+                                                      }else{
+                                                         ?> <option value="<?= $editorial ['id']; ?>"><?=$editorial['nombre'];?></option>;
+                                                      
+                                                      <?php }
+                                                      }
+                                             ?>
+                                          </select><br></br>
+                        Nº DE PÁGINAS: <input type="text" name="n_pags" value="<?=$datosLibro['n_pags']?>"><br><br>
+                        PRECIO: <input type="text" name="precio" value="<?=$datosLibro['precio'].'€'?>"><br><br><br>
+                        IMAGEN PORTADA:
+                                          <p>
+                                             <img id="imagenPequena" src="./imagenes/<?php echo $datosLibro['foto']; ?>" alt="Portada libro"/>
+                                          </p>
+                                          <p>
+                                             <label for="file">foto</label>
+                                             <input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+                                             <input type="file" name="foto"><br><br>
+                                          </p>
+               </legend>
+            </fieldset>
+            <p>
+               <input type="submit" value="Enviar" >
+            </p>
+         </form>
+      </div>
+      <div>
+         <p>
+            <input id="BotonAtras" type="button" onclick="history.back()" name="volver atrás" value="Volver atrás">
+         </p>
+      </div>
    </body>
-</html>  
+</html> 
+<?php include ("footer.php") ?> 

@@ -26,13 +26,18 @@ class Libros_Controller
    }
    //Función que carga el formulario del contacto
    public function contacto(){
-      include "views/libros_contacto.html";
+      include "views/libros_contacto.php";
    }
    //función que carga el apartado de infomación personal
    public function sobreMi(){
       include "views/libros_sobreMi.php";
    }
-
+   //función que carga el login
+   public function login(){
+      $url ="//localhost/pruebaLogin/login.php"; 
+      $tiempo_espera = 0.05; 
+      header("refresh: $tiempo_espera; url=$url");
+   }
    public function listar()
    {
       //Incluye el modelo que corresponde
